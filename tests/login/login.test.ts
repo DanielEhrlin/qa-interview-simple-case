@@ -10,17 +10,16 @@ test.describe('login form tests', () => {
     const existingUser = existingUsers[0]
 
     await page
-      .locator('#root form div:nth-child(1) > div > input')
-      .pressSequentially(existingUser.email)
+      .getByLabel('Email')
+      .fill(existingUser.email)
 
     await page
-      .locator('#root form div:nth-child(2) > div > input')
-      .pressSequentially(existingUser.password)
+      .getByLabel('Password', { exact: true })
+      .fill(existingUser.password)
 
-    // Submit button
-    const button = page.locator('form .MuiButton-sizeMedium')
-    // Click on the button
-    button.click()
+    await page
+      .getByRole('button', {name: 'Login'})
+      .click()
 
     // Wait for 1 second until page is fully loaded
     await page.waitForTimeout(1000)
