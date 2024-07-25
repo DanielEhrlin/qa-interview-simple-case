@@ -11,15 +11,15 @@ test.describe('login form tests', () => {
 
     await page
       .getByLabel('Email')
-      .pressSequentially(existingUser.email)
+      .fill(existingUser.email)
 
     await page
       .getByLabel('Password', { exact: true })
-      .pressSequentially(existingUser.password)
+      .fill(existingUser.password)
 
     await page
-    .getByRole('button', {name: 'Login'})
-    .click()
+      .getByRole('button', {name: 'Login'})
+      .click()
 
     // Wait for 1 second until page is fully loaded
     await page.waitForTimeout(1000)
